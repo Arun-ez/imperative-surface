@@ -1,6 +1,6 @@
 {
   "name": "imperative-surface",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Imperative, promise-based Sheet and Dialog presentation apis for React.",
   "homepage": "https://imperative-surface.vercel.app",
   "license": "MIT",
@@ -65,7 +65,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Arun-ez/imperative-surface"
+    "url": "git+https://github.com/Arun-ez/imperative-surface.git"
   },
   "bugs": {
     "url": "https://github.com/Arun-ez/imperative-surface/issues"
