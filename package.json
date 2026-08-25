@@ -1,0 +1,73 @@
+{
+  "name": "imperative-surface",
+  "version": "1.0.1",
+  "description": "Imperative, promise-based Sheet and Dialog presentation apis for React.",
+  "homepage": "https://imperative-surface.vercel.app",
+  "license": "MIT",
+  "author": "Arun Shaw",
+  "type": "module",
+  "main": "./dist/imperative-surface.mjs",
+  "module": "./dist/imperative-surface.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "typescript",
+    "dialog",
+    "modal",
+    "sheet",
+    "bottom-sheet",
+    "drawer",
+    "overlay",
+    "imperative-ui",
+    "imperative-api",
+    "react-modal",
+    "react-dialog",
+    "react-sheet"
+  ],
+  "devDependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@typescript/typescript6": "^6.0.2",
+    "@vitejs/plugin-react": "^6.1.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-css-injected-by-js": "^5.0.2",
+    "vite-plugin-dts": "^5.0.3"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/imperative-surface.mjs",
+      "default": "./dist/imperative-surface.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "tag": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arun-ez/imperative-surface"
+  },
+  "bugs": {
+    "url": "https://github.com/Arun-ez/imperative-surface/issues"
+  }
+}
