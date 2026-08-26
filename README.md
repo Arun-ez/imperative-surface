@@ -85,7 +85,6 @@ const data = await Surface.Sheet.present({
 if (data) {
   console.log(data); // { name: '...', email: '...' }
 }
-
 ```
 
 ## Documentation
