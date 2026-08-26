@@ -6,6 +6,13 @@ A lightweight, TypeScript-first UI library for React that lets you present **Dia
 
 Instead of managing modal visibility and result state manually, simply present a surface and `await` its result.
 
+
+## Documentation
+
+📚 **[Read the full documentation →](https://imperative-surface.vercel.app/docs)**
+
+The documentation includes installation, quick start, concepts, Dialogs, Sheets, API reference, TypeScript, theming, Next.js, and examples.
+
 ## Usage
 
 ```tsx
@@ -87,8 +94,6 @@ if (data) {
 }
 ```
 
-## Documentation
+## License
 
-📚 **[Read the full documentation →](https://imperative-surface.vercel.app/docs)**
-
-The documentation includes installation, quick start, concepts, Dialogs, Sheets, API reference, TypeScript, theming, Next.js, and examples.
+Distributed under the MIT License. See LICENSE for more information.
