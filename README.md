@@ -41,7 +41,9 @@ const confirmed = await Surface.Dialog.present<boolean>({
 });
 
 if (confirmed) {
-  console.log('User confirmed'); // true or false
+  console.log('User confirmed');
+} else {
+  console.log('User cancelled');
 }
 ```
 

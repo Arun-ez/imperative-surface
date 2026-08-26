@@ -1,6 +1,6 @@
 {
   "name": "imperative-surface",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Imperative, promise-based Sheet and Dialog presentation apis for React.",
   "homepage": "https://imperative-surface.vercel.app",
   "license": "MIT",
