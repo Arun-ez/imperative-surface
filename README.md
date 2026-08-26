@@ -1,3 +1,5 @@
+<img src="https://imperative-surface.vercel.app/logo.png" alt="Imperative Surface Logo" width="196" />
+
 # Imperative Surface
 
 A lightweight, TypeScript-first UI library for React that lets you present **Dialogs and Sheets imperatively** and receive the user's result through a Promise.
