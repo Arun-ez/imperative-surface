@@ -50,7 +50,7 @@ const data = await Surface.Sheet.present({
   body: (context) => {
     const onSubmit = (e) => {
       e.preventDefault();
-      const formdata = new FormData();
+      const formData = new FormData(e.target);
       const entries = Object.fromEntries(formData.entries());
       context.pop(entries);
     }
@@ -68,14 +68,16 @@ const data = await Surface.Sheet.present({
               type="text"
               name="name"
               placeholder="Enter name"
+              required
             />
           </label>
           <label>
             Email:
             <input 
-              type="text"
+              type="email"
               name="email"
               placeholder="Enter email"
+              required
             />
           </label>
         </Surface.Content>
