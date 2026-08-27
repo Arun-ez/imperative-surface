@@ -28,22 +28,23 @@ export class Dialog {
 
                 const pop = (value?: T | null) => {
 
-                    if (!panelRef) return;
+                    if (panelRef?.getAttribute('data-state') == 'open') {
 
-                    panelRef.addEventListener(
-                        'animationend',
-                        () => {
-                            root.unmount();
-                            surface.remove();
-                            resolve(value);
-                        },
-                        {
-                            once: true
-                        }
-                    );
+                        panelRef.addEventListener(
+                            'animationend',
+                            () => {
+                                root.unmount();
+                                surface.remove();
+                                resolve(value);
+                            },
+                            {
+                                once: true
+                            }
+                        );
 
-                    panelRef.setAttribute('data-state', 'close');
-                };
+                        panelRef.setAttribute('data-state', 'close');
+                    }
+                }
 
                 root.render(
                     createElement(
