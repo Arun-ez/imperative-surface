@@ -27,5 +27,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build
+        run: npm run build
+
+      - name: Clean package.json
+        run: |
+          jq 'del(.devDependencies, .scripts)' package.json > temp.json
+          mv temp.json package.json  
+
       - name: Publish to npm
-        run: npx clean-publish
+        run: npm publish
