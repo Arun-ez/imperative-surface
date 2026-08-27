@@ -40,7 +40,6 @@ surface-sheet[data-position="right"][data-size="full"] {
     border-radius: 0;
 }
 
-
 surface-sheet[data-position="top"][data-size="small"],
 surface-sheet[data-position="bottom"][data-size="small"] {
     max-height: 40vh;
