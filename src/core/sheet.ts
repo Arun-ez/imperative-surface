@@ -24,9 +24,9 @@ export class Sheet {
 
                 let position = args?.position || 'auto';
 
-                if (position == 'auto') position = window.matchMedia('(max-width: 1024px)').matches ? 'bottom' : 'right';
-
                 if (!['right', 'left', 'top', 'bottom', 'auto'].includes(position)) position = 'auto';
+
+                if (position == 'auto') position = window.matchMedia('(max-width: 1024px)').matches ? 'bottom' : 'right';
 
                 let size = args?.size || 'auto';
 
