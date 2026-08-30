@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import * as vite from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
@@ -7,7 +9,33 @@ export default vite.defineConfig({
     plugins: [
         react(),
         dts({ insertTypesEntry: true }),
-        cssInjectedByJsPlugin()
+        cssInjectedByJsPlugin(),
+        {
+            name: 'move-use-client-to-top',
+
+            writeBundle(options) {
+                const outDir = options.dir || 'dist';
+                const filePath = path.resolve(
+                    outDir,
+                    'imperative-surface.mjs'
+                );
+
+                if (!fs.existsSync(filePath)) {
+                    return;
+                }
+
+                let code = fs.readFileSync(filePath, 'utf8');
+
+                code = code.replace(
+                    /^\s*['"]use client['"];?\s*/gm,
+                    ''
+                );
+
+                code = `'use client';\n${code}`;
+
+                fs.writeFileSync(filePath, code);
+            },
+        },
     ],
     build: {
         target: 'esnext',
@@ -21,12 +49,11 @@ export default vite.defineConfig({
         rollupOptions: {
             external: ['react', 'react-dom', 'react-dom/client'],
             output: {
-                banner: "'use client';",
                 entryFileNames: 'imperative-surface.mjs',
                 globals: {
                     'react': 'React',
                     'react-dom': 'ReactDOM',
-                },
+                }
             },
         },
     },
