@@ -7,6 +7,12 @@ surface-sheet {
     height: 100%;
     border: 1px solid var(--impr-surface-border-color);
     overflow: hidden;
+    outline: none;
+}
+
+surface-sheet:focus,
+surface-sheet:focus-visible {
+    outline: none;
 }
 
 surface-sheet[data-position="left"][data-size="small"],

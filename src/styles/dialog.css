@@ -10,6 +10,12 @@ surface-dialog {
     margin: 1rem;
     display: flex;
     flex-direction: column;
+    outline: none;
+}
+
+surface-dialog:focus,
+surface-dialog:focus-visible {
+    outline: none;
 }
 
 surface-dialog[data-size="small"] {
