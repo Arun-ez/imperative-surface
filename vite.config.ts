@@ -11,7 +11,7 @@ export default vite.defineConfig({
         dts({ insertTypesEntry: true }),
         cssInjectedByJsPlugin(),
         {
-            name: 'move-use-client-to-top',
+            name: 'inject-use-client-directive',
 
             writeBundle(options) {
                 const outDir = options.dir || 'dist';
