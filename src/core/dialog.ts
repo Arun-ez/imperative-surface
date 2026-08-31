@@ -26,6 +26,8 @@ export class Dialog {
 
                 if (!['small', 'medium', 'large', 'xlarge'].includes(size)) size = 'small';
 
+                const previouslyFocusedElement: HTMLElement | null = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
                 const pop = (value?: T | null) => {
 
                     if (panelRef?.getAttribute('data-state') == 'open') {
@@ -35,6 +37,7 @@ export class Dialog {
                             () => {
                                 root.unmount();
                                 surface.remove();
+                                previouslyFocusedElement?.focus();
                                 resolve(value);
                             },
                             {
@@ -60,10 +63,14 @@ export class Dialog {
                             'surface-dialog',
                             {
                                 'role': 'dialog',
+                                'tabIndex': -1,
                                 'aria-modal': 'true',
                                 'data-state': 'open',
                                 'data-size': size,
-                                'ref': (ref: HTMLElement) => (panelRef = ref),
+                                'ref': (ref: HTMLElement) => {
+                                    panelRef = ref;
+                                    if (ref) ref.focus();
+                                }
                             },
                             args?.body && createElement(
                                 args.body,

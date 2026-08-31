@@ -34,6 +34,8 @@ export class Sheet {
 
                 if (size == 'auto') size = window.matchMedia('(max-width: 1024px)').matches ? 'xlarge' : 'small';
 
+                const previouslyFocusedElement: HTMLElement | null = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
                 const pop = (value?: T | null) => {
 
                     if (panelRef?.getAttribute('data-state') == 'open') {
@@ -43,6 +45,7 @@ export class Sheet {
                             () => {
                                 root.unmount();
                                 surface.remove();
+                                previouslyFocusedElement?.focus();
                                 resolve(value);
                             },
                             {
@@ -68,11 +71,15 @@ export class Sheet {
                             'surface-sheet',
                             {
                                 'role': 'dialog',
+                                'tabIndex': -1,
                                 'aria-modal': 'true',
                                 'data-state': 'open',
                                 'data-size': size,
                                 'data-position': position,
-                                'ref': (ref: HTMLElement) => (panelRef = ref),
+                                'ref': (ref: HTMLElement) => {
+                                    panelRef = ref;
+                                    if (ref) ref.focus();
+                                }
                             },
                             args?.body && createElement(
                                 args.body,
