@@ -32,7 +32,7 @@ export class Sheet {
 
                 if (!['small', 'medium', 'large', 'xlarge', 'full', 'auto'].includes(size)) size = 'auto';
 
-                if (size == 'auto') size = window.matchMedia('(max-width: 1024px)').matches ? 'xlarge' : 'small';
+                if (size == 'auto') size = window.matchMedia('(max-width: 1024px)').matches ? 'full' : 'small';
 
                 const previouslyFocusedElement: HTMLElement | null = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 

@@ -6,7 +6,7 @@ surface-dialog {
     overflow: hidden;
     border: 1px solid var(--impr-surface-border-color);
     min-height: 6rem;
-    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 2rem);
     margin: 1rem;
     display: flex;
     flex-direction: column;
