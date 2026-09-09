@@ -20,16 +20,14 @@ imperative-surface {
     inset: 0;
     z-index: 9999;
     position: fixed;
-}
-
-surface-backdrop {
-    inset: 0;
-    position: absolute;
-    backdrop-filter: blur(4px);
     background-color: var(--impr-surface-backdrop-color);
 }
 
-body:has(surface-backdrop) {
+:where(imperative-surface:last-of-type) {
+    backdrop-filter: blur(4px);
+}
+
+body:has(imperative-surface) {
     overflow: hidden;
 }
 
