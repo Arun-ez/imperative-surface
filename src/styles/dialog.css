@@ -11,35 +11,35 @@ surface-dialog {
     display: flex;
     flex-direction: column;
     outline: none;
-}
 
-surface-dialog:focus,
-surface-dialog:focus-visible {
-    outline: none;
-}
+    &:focus,
+    &:focus-visible {
+        outline: none;
+    }
 
-surface-dialog[data-size="small"] {
-    max-width: 24rem;
-}
+    &[data-size="small"] {
+        max-width: 24rem;
+    }
 
-surface-dialog[data-size="medium"] {
-    max-width: 42rem;
-}
+    &[data-size="medium"] {
+        max-width: 42rem;
+    }
 
-surface-dialog[data-size="large"] {
-    max-width: 56rem;
-}
+    &[data-size="large"] {
+        max-width: 56rem;
+    }
 
-surface-dialog[data-size="xlarge"] {
-    max-width: 80rem;
-}
+    &[data-size="xlarge"] {
+        max-width: 80rem;
+    }
 
-surface-dialog[data-state="open"] {
-    animation: dialog-open 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
+    &[data-state="open"] {
+        animation: dialog-open 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
 
-surface-dialog[data-state="close"] {
-    animation: dialog-close 0.3s ease-in both;
+    &[data-state="close"] {
+        animation: dialog-close 0.3s ease-in both;
+    }
 }
 
 @keyframes dialog-open {

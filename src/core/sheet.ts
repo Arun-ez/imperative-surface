@@ -1,8 +1,8 @@
 import '../styles/sheet.css';
 
 import { SheetArgs } from "../types";
+import { createElement } from "react";
 import { createRoot } from "react-dom/client";
-import { createElement, Fragment } from "react";
 
 export class Sheet {
 
@@ -15,6 +15,8 @@ export class Sheet {
                 if (typeof window === 'undefined') return reject(new Error('Window not available'));
 
                 const surface = document.createElement('imperative-surface');
+
+                if (args?.barrierDismissible != false) surface.onclick = (event) => (event.target == surface) && pop();
 
                 document.body.appendChild(surface);
 
@@ -59,35 +61,25 @@ export class Sheet {
 
                 root.render(
                     createElement(
-                        Fragment,
-                        null,
-                        createElement(
-                            'surface-backdrop',
-                            {
-                                'onClick': () => (args?.barrierDismissible != false) && pop()
+                        'surface-sheet',
+                        {
+                            'role': 'dialog',
+                            'tabIndex': -1,
+                            'aria-modal': 'true',
+                            'data-state': 'open',
+                            'data-size': size,
+                            'data-position': position,
+                            'ref': (ref: HTMLElement) => {
+                                panelRef = ref;
+                                if (ref) ref.focus();
                             }
-                        ),
-                        createElement(
-                            'surface-sheet',
+                        },
+                        args?.body && createElement(
+                            args.body,
                             {
-                                'role': 'dialog',
-                                'tabIndex': -1,
-                                'aria-modal': 'true',
-                                'data-state': 'open',
-                                'data-size': size,
-                                'data-position': position,
-                                'ref': (ref: HTMLElement) => {
-                                    panelRef = ref;
-                                    if (ref) ref.focus();
-                                }
-                            },
-                            args?.body && createElement(
-                                args.body,
-                                {
-                                    pop: pop,
-                                    props: args?.props
-                                }
-                            )
+                                pop: pop,
+                                props: args?.props
+                            }
                         )
                     )
                 )
