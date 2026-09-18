@@ -1,4 +1,4 @@
-surface-dialog {
+[data-slot='surface-dialog'] {
     width: 100%;
     background-color: var(--impr-surface-background-color);
     color: var(--impr-surface-foreground-color);

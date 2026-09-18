@@ -1,7 +1,7 @@
 import '../styles/sheet.css';
 
 import { SheetArgs } from "../types";
-import { createElement } from "react";
+import { createElement, Fragment } from "react";
 import { createRoot } from "react-dom/client";
 
 export class Sheet {
@@ -14,9 +14,9 @@ export class Sheet {
 
                 if (typeof window === 'undefined') return reject(new Error('Window not available'));
 
-                const surface = document.createElement('imperative-surface');
+                const surface = document.createElement('div');
 
-                if (args?.barrierDismissible != false) surface.onclick = (event) => (event.target == surface) && pop();
+                surface.dataset.slot = 'surface-root';
 
                 document.body.appendChild(surface);
 
@@ -61,25 +61,37 @@ export class Sheet {
 
                 root.render(
                     createElement(
-                        'surface-sheet',
-                        {
-                            'role': 'dialog',
-                            'tabIndex': -1,
-                            'aria-modal': 'true',
-                            'data-state': 'open',
-                            'data-size': size,
-                            'data-position': position,
-                            'ref': (ref: HTMLElement) => {
-                                panelRef = ref;
-                                if (ref) ref.focus();
-                            }
-                        },
-                        args?.body && createElement(
-                            args.body,
+                        Fragment,
+                        null,
+                        createElement(
+                            'div',
                             {
-                                pop: pop,
-                                props: args?.props
+                                'data-slot': 'surface-backdrop',
+                                'onClick': () => (args?.barrierDismissible != false) && pop()
                             }
+                        ),
+                        createElement(
+                            'div',
+                            {
+                                'role': 'dialog',
+                                'tabIndex': -1,
+                                'aria-modal': 'true',
+                                'data-state': 'open',
+                                'data-slot': 'surface-sheet',
+                                'data-size': size,
+                                'data-position': position,
+                                'ref': (ref: HTMLElement) => {
+                                    panelRef = ref;
+                                    if (ref) ref.focus();
+                                }
+                            },
+                            args?.body && createElement(
+                                args.body,
+                                {
+                                    pop: pop,
+                                    props: args?.props
+                                }
+                            )
                         )
                     )
                 )
