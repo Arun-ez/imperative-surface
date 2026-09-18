@@ -3,7 +3,7 @@
     :root {
         --impr-surface-background-color: oklch(1 0 0);
         --impr-surface-foreground-color: oklch(0.145 0 0);
-        --impr-surface-backdrop-color: rgba(0, 0, 0, 0.4);
+        --impr-surface-backdrop-color: rgba(0, 0, 0, 0.5);
         --impr-surface-border-color: oklch(0.922 0 0);
         --impr-surface-border-radius: 1.5rem;
     }
@@ -11,33 +11,34 @@
     .dark {
         --impr-surface-background-color: #0b0b0c;
         --impr-surface-foreground-color: oklch(0.922 0 0);
-        --impr-surface-backdrop-color: rgba(0, 0, 0, 0.4);
+        --impr-surface-backdrop-color: rgba(0, 0, 0, 0.5);
         --impr-surface-border-color: oklch(1 0 0 / 10%);
     }
 }
 
-imperative-surface {
+[data-slot='surface-root'] {
     inset: 0;
     z-index: 9999;
     position: fixed;
-    background-color: var(--impr-surface-backdrop-color);
 }
 
-:where(imperative-surface:last-of-type) {
-    backdrop-filter: blur(4px);
-}
-
-body:has(imperative-surface) {
+body:has([data-slot='surface-root']) {
     overflow: hidden;
 }
 
-imperative-surface:has(surface-dialog) {
+[data-slot='surface-backdrop'] {
+    inset: 0;
+    position: absolute;
+    background-color: var(--impr-surface-backdrop-color);
+}
+
+[data-slot='surface-root']:has([data-slot='surface-dialog']) {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-imperative-surface [data-slot="surface-body"] {
+[data-slot="surface-body"] {
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -46,16 +47,16 @@ imperative-surface [data-slot="surface-body"] {
     -ms-overflow-style: none;
 }
 
-imperative-surface [data-slot="surface-body"][aria-busy="true"] {
+[data-slot="surface-body"][aria-busy="true"] {
     pointer-events: none;
     opacity: 0.5;
 }
 
-imperative-surface [data-slot="surface-body"]::-webkit-scrollbar {
+[data-slot="surface-body"]::-webkit-scrollbar {
     display: none;
 }
 
-imperative-surface [data-slot="surface-header"] {
+[data-slot="surface-header"] {
     position: sticky;
     top: 0;
     left: 0;
@@ -73,39 +74,39 @@ imperative-surface [data-slot="surface-header"] {
             transparent 100%);
 }
 
-imperative-surface [data-slot="surface-header"]>div {
+[data-slot="surface-header"]>div {
     padding: 1rem;
 }
 
-imperative-surface [data-slot="surface-header"] [data-slot="surface-header-default"] {
+[data-slot="surface-header"] [data-slot="surface-header-default"] {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-imperative-surface [data-slot="surface-header"] [data-slot="surface-header-default"]>div:nth-child(1) {
+[data-slot="surface-header"] [data-slot="surface-header-default"]>div:nth-child(1) {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-imperative-surface [data-slot="surface-header"] [data-slot="surface-header-default"]>div:nth-child(2) {
+[data-slot="surface-header"] [data-slot="surface-header-default"]>div:nth-child(2) {
     display: flex;
     align-items: center;
     flex: 1;
 }
 
-imperative-surface [data-slot="surface-header"] [data-slot="surface-header-default"]>div:nth-child(2)[data-center="true"] {
+[data-slot="surface-header"] [data-slot="surface-header-default"]>div:nth-child(2)[data-center="true"] {
     justify-content: center;
 }
 
-imperative-surface [data-slot="surface-header"] [data-slot="surface-header-default"]>div:nth-child(3) {
+[data-slot="surface-header"] [data-slot="surface-header-default"]>div:nth-child(3) {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-imperative-surface [data-slot="surface-header"] [data-slot="surface-header-default"] [data-slot="close-icon"] {
+[data-slot="surface-header"] [data-slot="surface-header-default"] [data-slot="close-icon"] {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,7 +119,7 @@ imperative-surface [data-slot="surface-header"] [data-slot="surface-header-defau
     border: 1px solid var(--impr-surface-border-color);
 }
 
-imperative-surface [data-slot="surface-content"] {
+[data-slot="surface-content"] {
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -126,7 +127,7 @@ imperative-surface [data-slot="surface-content"] {
     gap: 1rem;
 }
 
-imperative-surface [data-slot="surface-footer"] {
+[data-slot="surface-footer"] {
     position: sticky;
     left: 0;
     right: 0;
@@ -144,6 +145,6 @@ imperative-surface [data-slot="surface-footer"] {
             transparent 100%);
 }
 
-imperative-surface [data-slot="surface-footer"]>div {
+[data-slot="surface-footer"]>div {
     padding: 1rem;
 }
